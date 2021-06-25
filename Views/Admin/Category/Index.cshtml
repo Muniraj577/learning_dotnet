@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Blog.Models.Category>
+
+@{
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Category";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>All Categories</h1>
+                <span class="text-success">@TempData["SuccessMsg"]</span>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                       @* @Html.ActionLink("Create New", "Create", null, null, htmlAttributes: new { @class= "btn btn-primary"} )*@
+                        <a href="@Url.RouteUrl("createCategory")" class="btn btn-primary">Add New Category</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-hover" id="Category">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ 
+                                    int i = 1;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                           @(i++)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
+                                            @Html.ActionLink("View Detail", "Detail", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class ="btn btn-sm btn-danger" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#Category").DataTable();
+        });
+    </script>
+}
+

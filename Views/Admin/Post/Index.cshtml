@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Blog.Models.Post>
+
+@{
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+    ViewBag.Title = "Post";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>All Categories</h1>
+                <span class="text-success">@TempData["SuccessMsg"]</span>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        @* @Html.ActionLink("Create New", "Create", null, null, htmlAttributes: new { @class= "btn btn-primary"} )*@
+                        <a href="@Url.RouteUrl("post.create")" class="btn btn-primary">Add New Post</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-hover" id="Post">
+                            <thead>
+                                <tr>
+                                    <th>S.N</th>
+                                    <th>Image</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Description)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CatId)
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 1;
+                                }
+
+                                @foreach (var item in Model)
+                                {
+                                    
+                                <tr>
+                                    <td>
+                                        @(i++)
+                                    </td>
+                                    <td>
+                                        <img src="@Url.Content("~/Content/Images/Posts/"+item.Image)" style="width:50px;" alt="Alternate Text" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category.Name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
+                                        @Html.ActionLink("View Detail", "Detail", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#Post").DataTable();
+        });
+    </script>
+}
+
+
+

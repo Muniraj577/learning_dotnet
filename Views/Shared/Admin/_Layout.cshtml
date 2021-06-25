@@ -1,0 +1,31 @@
+﻿<!Doctype Html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @RenderPage("~/Views/Shared/Admin/_Style.cshtml")
+    @RenderSection("Styles", required:false)
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        @RenderPage("~/Views/Shared/Admin/_Header.cshtml")
+        <!-- Main Sidebar Container -->
+        @RenderPage("~/Views/Shared/Admin/_Sidebar.cshtml")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+            
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        @RenderPage("~/Views/Shared/Admin/_Footer.cshtml")
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    @RenderPage("~/Views/Shared/Admin/_Scripts.cshtml")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

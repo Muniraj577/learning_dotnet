@@ -1,0 +1,46 @@
+﻿@model Blog.Models.Category
+
+
+@{
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+    ViewBag.Title = "View Detail";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Category Detail</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        @Html.RouteLink("Back To List", "category", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        @Html.RouteLink("Edit", "editCategory", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                    <div class="card-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
